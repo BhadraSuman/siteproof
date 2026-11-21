@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -10,8 +10,21 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0D11" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "SiteProof - Civil Engineering QA/QC & Third-Party Inspection Consultancy",
+  metadataBase: new URL("https://siteproof.in"),
+  title: {
+    default: "SiteProof - Civil Engineering QA/QC & Third-Party Inspection Consultancy",
+    template: "%s | SiteProof Civil QA/QC",
+  },
   description:
     "Third-party inspection, quality assurance, NABL material testing, structural assessment, and contractor work certification across Roads, Railways, Buildings, and Water Tanks in West Bengal. Led by Rahul Mondal.",
   keywords: [
@@ -27,6 +40,17 @@ export const metadata: Metadata = {
     "Uddipta Tech Solutions",
   ],
   authors: [{ name: "Uddipta Tech Solutions", url: "https://uddiptatech.com" }],
+  openGraph: {
+    title: "SiteProof - Civil Engineering QA/QC & Material Testing",
+    description: "Third-party inspection, structural review, and NABL material testing across Roads, Railways, Buildings, and Water Tanks in West Bengal.",
+    siteName: "SiteProof",
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -43,27 +67,28 @@ export default function RootLayout({
         "name": "SiteProof - Civil Engineering & QA/QC Consultancy",
         "founder": {
           "@type": "Person",
-          "name": "Rahul Mondal"
+          "name": "Rahul Mondal",
         },
         "telephone": "+918101274483",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Burdwan",
           "addressRegion": "West Bengal",
-          "addressCountry": "IN"
+          "addressCountry": "IN",
         },
-        "description": "Third-party civil engineering quality assurance, material testing, structural assessment, and contractor work certification.",
-        "areaServed": "West Bengal & Eastern India"
+        "description":
+          "Third-party civil engineering quality assurance, material testing, structural assessment, and contractor work certification.",
+        "areaServed": "West Bengal & Eastern India",
       },
       {
         "@type": "Service",
         "name": "Civil Engineering QA/QC & Material Testing",
         "provider": {
-          "@id": "https://siteproof.in/#organization"
+          "@id": "https://siteproof.in/#organization",
         },
-        "serviceType": "Third-Party Construction Inspection & Laboratory Testing"
-      }
-    ]
+        "serviceType": "Third-Party Construction Inspection & Laboratory Testing",
+      },
+    ],
   };
 
   return (
@@ -91,10 +116,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white dark:bg-[#0B0D11] text-[#111111] dark:text-[#F3F4F6] min-h-screen antialiased selection:bg-[#FFC20E] selection:text-black transition-colors duration-200">
+      <body
+        suppressHydrationWarning
+        className="bg-white dark:bg-[#0B0D11] text-[#111111] dark:text-[#F3F4F6] min-h-screen antialiased selection:bg-[#FFC20E] selection:text-black transition-colors duration-200"
+      >
         <ThemeProvider>
           {children}
-          {/* SOW Requirement: Floating WhatsApp Button across all pages */}
+          {/* Floating WhatsApp Button across all pages */}
           <FloatingWhatsApp />
         </ThemeProvider>
       </body>

@@ -1,10 +1,15 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FlaskConical, FileSearch, ShieldCheck, Compass, Home, CheckCircle2, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Civil QA/QC Services & Testing Scope | SiteProof",
+  description:
+    "Material testing, structural assessment, contractor work quality analysis, and sector-specific QA/QC for Roads, Railways, Buildings, and Water Tanks in West Bengal.",
+};
 
 export default function ServicesPage() {
   const serviceOfferings = [
@@ -103,7 +108,7 @@ export default function ServicesPage() {
 
         {/* 5 Core Offerings List */}
         <div className="max-w-[1120px] mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
-          {serviceOfferings.map((service, index) => {
+          {serviceOfferings.map((service) => {
             const Icon = service.icon;
             return (
               <div

@@ -1,10 +1,15 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ShieldCheck, Award, FlaskConical, Target, CheckCircle2, ArrowRight, UserCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us | SiteProof Civil QA/QC Consultancy",
+  description:
+    "Learn about SiteProof, our 4-stage engineering methodology, strategic NABL lab partnerships, and leadership by Rahul Mondal in Burdwan, West Bengal.",
+};
 
 export default function AboutPage() {
   const methodology = [
